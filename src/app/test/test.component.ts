@@ -17,12 +17,12 @@ export class TestComponent implements OnInit {
 
   validationMessages = {
     name: {
-      required: 'name is required',
+      required: 'Name is required',
       minlength: 'Min length 2',
       maxlength: 'Max length 10',
     },
     email: {
-      required: 'email is required',
+      required: 'Email is required',
       email: 'invalid email format',
     },
     skillName: {
@@ -94,7 +94,11 @@ export class TestComponent implements OnInit {
         this.logErrors(abstractControl);
       } else {
         this.formErrors[key] = '';
-        if (abstractControl && !abstractControl.valid) {
+        if (
+          abstractControl &&
+          !abstractControl.valid &&
+          (abstractControl.touched || abstractControl.dirty)
+        ) {
           const msg = this.validationMessages[key];
 
           //console.log(abstractControl.errors); //failed ones ,return true/false
@@ -102,8 +106,8 @@ export class TestComponent implements OnInit {
 
           for (const errorKey in abstractControl.errors) {
             if (errorKey) {
-              console.log(msg[errorKey]);
-              this.formErrors[key] += msg[errorKey] + ', ';
+              //console.log(msg[errorKey]);
+              this.formErrors[key] += msg[errorKey] + ' ';
             }
           }
         }
@@ -116,10 +120,11 @@ export class TestComponent implements OnInit {
     //console.log(this.carForm.controls.name.status);
     //console.log(this.carForm.get('email').touched);  //.value etc
     //console.log(this.carForm.get('skills').value.level);
+    this.logErrors(this.carForm);
   }
   onKey(): void {
     this.logErrors(this.carForm);
-    console.log(this.formErrors);
+    //console.log(this.formErrors);
   }
 
   //setvalue for all values,patchvalue to update subset

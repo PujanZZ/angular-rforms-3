@@ -4,20 +4,23 @@
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
       <input formControlName="name" matInput />
-      <mat-error
+      <!-- <mat-error
         *ngIf="
           (carForm.get('name').touched || carForm.get('name').dirty) &&
           carForm.get('name').hasError('required')
         "
         >Name is <strong>required</strong></mat-error
-      >
-      <mat-error
+      > -->
+      <mat-error *ngIf="formErrors.name">{{ formErrors.name }}</mat-error>
+      <br />
+
+      <!-- <mat-error
         *ngIf="
           carForm.get('name').hasError('minlength') ||
           carForm.get('name').hasError('maxlength')
         "
         >Min 2 Max 10</mat-error
-      >
+      > -->
     </mat-form-field>
 
     <p>Email</p>
@@ -29,11 +32,14 @@
         type="email"
         placeholder="Ex. pat@example.com"
       />
-      <mat-error *ngIf="carForm.get('email').hasError('required')">
+      <!-- <mat-error *ngIf="carForm.get('email').hasError('required')">
         Email is <strong>required</strong>
       </mat-error>
       <mat-error *ngIf="carForm.get('email').hasError('email')">
         Email is <strong>invalid</strong>
+      </mat-error> -->
+      <mat-error *ngIf="formErrors.email">
+        {{ formErrors.email }}
       </mat-error>
     </mat-form-field>
     <p>Skill</p>
@@ -42,14 +48,20 @@
         <mat-form-field appearance="fill">
           <mat-label>Skill</mat-label>
           <input formControlName="skillName" matInput />
+          <mat-error *ngIf="formErrors.skillName">
+            {{ formErrors.skillName }}
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Experience in years</mat-label>
           <input formControlName="experienceInYears" matInput type="number" />
-          <mat-error
+          <!-- <mat-error
             *ngIf="carForm.get('skills.experienceInYears').hasError('required')"
             >Number is <strong>required</strong>
+          </mat-error> -->
+          <mat-error *ngIf="formErrors.experienceInYears">
+            {{ formErrors.experienceInYears }}
           </mat-error>
         </mat-form-field>
       </div>
