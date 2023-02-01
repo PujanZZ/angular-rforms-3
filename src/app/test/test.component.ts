@@ -25,6 +25,9 @@ export class TestComponent implements OnInit {
       required: 'Email is required',
       email: 'invalid email format',
     },
+    phone: {
+      required: 'Phone number is required',
+    },
     skillName: {
       required: 'Skill name is required',
     },
@@ -39,6 +42,7 @@ export class TestComponent implements OnInit {
   formErrors = {
     name: '',
     email: '',
+    phone: '',
     skillName: '',
     experienceInYears: '',
     level: '',
@@ -69,7 +73,9 @@ export class TestComponent implements OnInit {
           Validators.maxLength(10),
         ],
       ],
+      pref: ['email', []],
       email: ['', [Validators.required, Validators.email]],
+      phone: [''],
       skills: this.fb.group({
         skillName: ['', [Validators.required]],
         experienceInYears: ['', [Validators.required]],
@@ -139,4 +145,6 @@ export class TestComponent implements OnInit {
       },
     });
   }
+
+  onContact(selectedValue: string) {}
 }
