@@ -146,5 +146,10 @@ export class TestComponent implements OnInit {
     });
   }
 
-  onContact(selectedValue: string) {}
+  onContact(selectedValue: string) {
+    const phoneControl = this.carForm.get('phone')
+    if(selectedValue === 'phone'){
+      
+    }
+  }
 }
